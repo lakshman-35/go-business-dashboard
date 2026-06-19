@@ -9,23 +9,23 @@ const Dashboard = () => {
     const [tableLoading, setTableLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // API response structures
+
     const [metrics, setMetrics] = useState([]);
     const [serviceSummary, setServiceSummary] = useState(null);
     const [referralShare, setReferralShare] = useState({ link: '', code: '' });
     const [referralsList, setReferralsList] = useState([]);
 
-    // Search, sort, pagination configs
+
     const [search, setSearch] = useState('');
     const [sortOrder, setSortOrder] = useState('desc');
     const [currentPage, setCurrentPage] = useState(1);
     const rowsPerPage = 10;
 
-    // Copy states for visual confirmation
+
     const [copyLinkText, setCopyLinkText] = useState('Copy');
     const [copyCodeText, setCopyCodeText] = useState('Copy');
 
-    // Use a ref to track if it's the initial page load
+
     const isInitialLoad = useRef(true);
 
     const fetchData = async () => {
@@ -75,7 +75,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         fetchData();
-        setCurrentPage(1); // Reset page on query updates
+        setCurrentPage(1);
     }, [search, sortOrder]);
 
     const toggleDateSort = () => {
@@ -106,7 +106,7 @@ const Dashboard = () => {
         }).format(amount);
     };
 
-    // Pagination processing
+
     const indexOfLastRow = currentPage * rowsPerPage;
     const indexOfFirstRow = indexOfLastRow - rowsPerPage;
     const currentRows = referralsList.slice(indexOfFirstRow, indexOfLastRow);
@@ -118,7 +118,7 @@ const Dashboard = () => {
                 <Navbar />
                 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
-                    {/* Header */}
+
                     <div>
                         <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Referral Dashboard</h1>
                         <p class="mt-1 text-sm text-gray-500">Track your referrals, earnings, and partner activity in one place.</p>
@@ -134,7 +134,7 @@ const Dashboard = () => {
                         <div class="text-center py-12 text-sm text-gray-500">Loading configurations...</div>
                     ) : (
                         <>
-                            {/* Overview Cards */}
+
                             <section role="region" aria-label="Overview metrics" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
                                 {metrics.map((item) => (
                                     <div key={item.id} class="bg-white overflow-hidden shadow border border-gray-200 rounded-lg p-5">
@@ -145,7 +145,7 @@ const Dashboard = () => {
                             </section>
 
                             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                                {/* Service Summary */}
+
                                 <section aria-label="Service summary" class="bg-white shadow border border-gray-200 rounded-lg p-6 lg:col-span-1">
                                     <h2 class="text-lg font-bold text-gray-900 border-b pb-3 mb-4">Service summary</h2>
                                     {serviceSummary && (
@@ -170,7 +170,7 @@ const Dashboard = () => {
                                     )}
                                 </section>
 
-                                {/* Share Referral Panel */}
+
                                 <section aria-label="Share referral" class="bg-white shadow border border-gray-200 rounded-lg p-6 lg:col-span-2 space-y-6">
                                     <h2 class="text-lg font-bold text-gray-900 border-b pb-3">Refer friends and earn more</h2>
 
@@ -212,7 +212,7 @@ const Dashboard = () => {
                                 </section>
                             </div>
 
-                            {/* Referrals Data Table */}
+
                             <section class="bg-white shadow border border-gray-200 rounded-lg overflow-hidden relative">
                                 <div class="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                                     <h2 class="text-lg font-bold text-gray-900">All referrals</h2>
@@ -251,7 +251,7 @@ const Dashboard = () => {
                                             <tr>
                                                 <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Name</th>
                                                 <th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Service</th>
-                                                {/* Interactive Clickable Date Header */}
+
                                                 <th
                                                     onClick={toggleDateSort}
                                                     class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-indigo-600 select-none transition-colors"

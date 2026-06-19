@@ -31,7 +31,7 @@ const ReferralDetail = () => {
                 const resJson = await response.json();
 
                 if (resJson.success && resJson.data) {
-                    // Parse both single-object data formats or direct array lookups securely
+
                     const referralRecord = resJson.data.referrals
                         ? resJson.data.referrals.find(r => r.id.toString() === id.toString())
                         : resJson.data;
